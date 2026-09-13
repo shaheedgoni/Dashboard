@@ -2,6 +2,7 @@ import { DataTable } from "../payments/data-table";
 import { cardDetails } from "./overviewContent";
 import Card from "@/components/page-components/card";
 import { columns } from "../payments/columns";
+import Panel from "@/components/page-components/panel";
 
 export default function Overview() {
   return (
@@ -22,20 +23,26 @@ export default function Overview() {
           })}
         </div>
 
-        <div className="bg-white border-2 h-100 border-gray-300 p-5 rounded-2xl">
-          <p className="mb-3">Recent Activity</p>
-          <DataTable
-            columns={columns}
-            data={[
-              {
-                id: "728ed52f",
-                amount: 100,
-                status: "pending",
-                email: "m@example.com",
-              },
-            ]}
-          />
-        </div>
+        <Panel content={<></>} />
+
+        <Panel
+          content={
+            <>
+              <p className="mb-3">Recent Activity</p>
+              <DataTable
+                columns={columns}
+                data={[
+                  {
+                    id: "728ed52f",
+                    amount: 100,
+                    status: "pending",
+                    email: "m@example.com",
+                  },
+                ]}
+              />
+            </>
+          }
+        />
       </div>
     </div>
   );
