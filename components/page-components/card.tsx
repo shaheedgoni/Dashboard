@@ -4,7 +4,7 @@ import { FaArrowDown } from "react-icons/fa6";
 
 export default function Card({ title, stats, isRise }: CardDetailsProps) {
   return (
-    <div className="bg-white border-2 border-gray-300 p-5 rounded-2xl">
+    <div className="bg-white border-2 border-gray-300 p-5 rounded-2xl shadow">
       <div className="flex justify-between">
         <p>{title}</p>
         <div

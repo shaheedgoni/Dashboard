@@ -25,7 +25,7 @@ export default function Sidebar() {
               <li key={index}>
                 <Link
                   href={item.href}
-                  className={`flex py-2 px-4 items-center gap-2 rounded-full text-white ${isActive ? "bg-linear-to-t from-sky-700 to-sky-600 border-t border-sky-400 outline-none" : "hover:bg-white/6"}`}
+                  className={`flex py-2 px-4 items-center gap-2 rounded-full text-white ${isActive ? "bg-linear-to-t from-sky-700 to-sky-600 border-t border-t-sky-500 border-b border-b-sky-800 outline-none" : "hover:bg-white/6"}`}
                 >
                   {item.icon}
                   {item.title}

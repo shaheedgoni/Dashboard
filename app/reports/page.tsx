@@ -1,7 +1,7 @@
-export default function Report() {
+export default function Reports() {
   return (
     <div className="bg-stone-100 h-screen">
-      <h1>Report</h1>
+      <h1>Reports</h1>
     </div>
   );
 }

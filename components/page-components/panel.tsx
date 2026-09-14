@@ -1,8 +1,10 @@
 import { PanelProps } from "@/types/panelTypes";
 
-export default function Panel({ content }: PanelProps) {
+export default function Panel({ content, flex }: PanelProps) {
   return (
-    <div className="bg-white border-2 h-100 border-gray-300 p-5 rounded-2xl">
+    <div
+      className={`bg-white border-2 ${flex} border-gray-300 p-6 rounded-2xl shadow`}
+    >
       {content}
     </div>
   );
