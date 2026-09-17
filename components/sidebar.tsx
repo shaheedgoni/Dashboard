@@ -36,7 +36,7 @@ export default function Sidebar() {
         </ul>
       </div>
 
-      <div className="mt-auto rounded-lg bg-white border border-gray-200 shadow-sm flex items-center justify-between px-3 py-2.5  cursor-pointer">
+      <div className="mt-auto rounded-lg bg-white border border-gray-200 shadow-sm flex items-center justify-between px-3 py-2.5 cursor-pointer">
         <div className="flex items-center gap-3">
           <div className="bg-green-500 text-white w-9 h-9 justify-center items-center flex rounded-full font-medium text-sm shrink-0">
             U
