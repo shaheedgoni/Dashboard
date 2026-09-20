@@ -1,9 +1,37 @@
-export default function Notifications() {
+"use client";
+
+import { notificationProps } from "@/types/notificationProps";
+import { useEffect } from "react";
+import { LuX } from "react-icons/lu";
+
+export default function Notifications({
+  setDisplayNotification,
+}: notificationProps) {
+  useEffect(() => {
+    function handleKeyDown(e: KeyboardEvent) {
+      if (e.key === "Escape") {
+        setDisplayNotification(false);
+      }
+    }
+
+    document.addEventListener("keydown", handleKeyDown);
+    return () => document.removeEventListener("keydown", handleKeyDown);
+  }, [setDisplayNotification]);
+
   return (
-    <div className="h-full w-full z-15 flex items-center bg-black/60 backdrop-blur-sm fixed">
-      <p className="bg-white rounded-2xl ml-auto mr-auto p-5 w-300 h-150">
-        Notifications
-      </p>
+    <div className="h-full w-full z-15 flex justify-center items-center bg-black/30 backdrop-blur-xs fixed">
+      <div className="bg-white rounded-2xl p-5 w-300 h-150">
+        <div className="flex items-center justify-between">
+          <h1 className="text-2xl">Notifications</h1>
+
+          <button
+            onClick={() => setDisplayNotification(false)}
+            className="text-xl text-gray-500 active:bg-gray-200 transition-colors p-2 rounded-full"
+          >
+            <LuX size={26} />
+          </button>
+        </div>
+      </div>
     </div>
   );
 }

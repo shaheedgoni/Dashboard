@@ -13,7 +13,7 @@ export default function HeaderFeatures() {
         setDisplayNotification={setDisplayNotification}
       />
       <div className={displayNotification ? "" : "hidden"}>
-        <Notifications />
+        <Notifications setDisplayNotification={setDisplayNotification} />
       </div>
     </>
   );

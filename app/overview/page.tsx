@@ -28,6 +28,7 @@ export default function Overview() {
                 isRise={card.isRise}
                 title={card.title}
                 stats={card.stats}
+                trendPercent={card.trendPercent}
                 key={index}
               />
             );
