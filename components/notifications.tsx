@@ -3,6 +3,7 @@
 import { notificationProps } from "@/types/notificationProps";
 import { useEffect } from "react";
 import { LuX } from "react-icons/lu";
+import PrimaryButton from "./page-components/primaryButton";
 
 export default function Notifications({
   setDisplayNotification,
@@ -24,12 +25,9 @@ export default function Notifications({
         <div className="flex items-center justify-between">
           <h1 className="text-2xl">Notifications</h1>
 
-          <button
-            onClick={() => setDisplayNotification(false)}
-            className="text-xl text-gray-500 active:bg-gray-200 transition-colors p-2 rounded-full"
-          >
+          <PrimaryButton onClick={() => setDisplayNotification(false)}>
             <LuX size={26} />
-          </button>
+          </PrimaryButton>
         </div>
       </div>
     </div>

@@ -3,7 +3,6 @@ import {
   LuLayoutGrid,
   LuUsers,
   LuTrendingUp,
-  LuFileText,
   LuFlag,
   LuSettings,
 } from "react-icons/lu";
@@ -24,11 +23,7 @@ export const sidebarList: sidebarListProps[] = [
     href: "/analytics",
     icon: <LuTrendingUp />,
   },
-  {
-    title: "Content",
-    href: "/content",
-    icon: <LuFileText />,
-  },
+
   {
     title: "Reports",
     href: "/reports",

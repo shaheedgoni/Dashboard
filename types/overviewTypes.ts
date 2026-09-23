@@ -5,5 +5,6 @@ export interface barChartProps {
 
 export interface pieChartProps {
   label: string;
-  percentage?: number;
+  color: string;
+  value: number;
 }

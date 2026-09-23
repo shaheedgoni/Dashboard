@@ -2,9 +2,7 @@ import type { Metadata } from "next";
 
 import { Geist, Geist_Mono, Roboto } from "next/font/google";
 import Sidebar from "../components/sidebar";
-import Header from "../components/header";
 import "./globals.css";
-import Notifications from "@/components/notifications";
 import HeaderFeatures from "@/components/headerFeatures";
 
 const geistSans = Geist({
@@ -35,7 +33,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} ${roboto.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex bg-stone-200" suppressHydrationWarning>
+      <body className="min-h-full flex bg-stone-50" suppressHydrationWarning>
         <Sidebar />
         <div className="w-full relative">
           <HeaderFeatures />

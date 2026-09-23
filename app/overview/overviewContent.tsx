@@ -1,7 +1,7 @@
-import { CardDetailsProps } from "@/types/CardDetailsTypes";
+import { overviewCardDetailsProps } from "@/types/CardDetailsTypes";
 import { barChartProps, pieChartProps } from "@/types/overviewTypes";
 
-export const cardDetails: CardDetailsProps[] = [
+export const overviewCardDetails: overviewCardDetailsProps[] = [
   {
     title: "Total Users",
     stats: "10,422",
@@ -61,14 +61,39 @@ export const barChartDetails: barChartProps[] = [
 
 export const pieChartDetails: pieChartProps[] = [
   {
-    label: "Paid",
-    percentage: 35,
+    label: "Visits",
+    value: 225,
+    color: "#0284c7 ",
   },
   {
-    label: "Visits",
-    percentage: 65,
+    label: "Paid",
+    value: 301,
+    color: "#38bdf8",
   },
   {
     label: "Traffic",
+    value: 207,
+    color: "#64748b ",
   },
+  {
+    label: "Annual",
+    value: 153,
+    color: "#94a3b8",
+  },
+  {
+    label: "Goal",
+    value: 90,
+    color: "#cbd5e1",
+  },
+];
+
+export const totalUsersSparkline = [
+  { value: 30 },
+  { value: 45 },
+  { value: 38 },
+  { value: 50 },
+  { value: 42 },
+  { value: 60 },
+  { value: 55 },
+  { value: 68 },
 ];

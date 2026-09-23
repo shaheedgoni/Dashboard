@@ -1,7 +1,20 @@
+import { reportCardDetails } from "./reportContent";
+import Section from "@/components/section";
+import ReportCard from "./reportCard";
+
 export default function Reports() {
   return (
-    <div className="bg-stone-100 h-screen">
-      <h1>Reports</h1>
-    </div>
+    <Section title="Reports">
+      <div className="flex gap-3 w-full">
+        {reportCardDetails.map((entry, index) => (
+          <ReportCard
+            key={index}
+            icon={entry.icon}
+            label={entry.label}
+            value={entry.value}
+          />
+        ))}
+      </div>
+    </Section>
   );
 }

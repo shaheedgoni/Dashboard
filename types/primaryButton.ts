@@ -1,6 +1,6 @@
 import { ReactNode } from "react";
 
-export interface PanelProps {
+export interface primaryButtonProps {
+  onClick?: () => void;
   children?: ReactNode;
-  flex?: string;
 }

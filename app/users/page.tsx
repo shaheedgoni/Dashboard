@@ -2,6 +2,7 @@
 
 import Panel from "@/components/page-components/panel";
 import SearchBar from "@/components/page-components/searchBar";
+import Section from "@/components/section";
 import { useState } from "react";
 import {
   LuChevronLeft,
@@ -313,133 +314,117 @@ export default function Users() {
   console.log("running");
 
   return (
-    <div className="bg-stone-100 p-8 h-610 font-roboto">
-      <h1 className="font-semibold text-4xl mb-6">Users</h1>
-      <Panel
-        content={
-          <>
-            <div className="mb-6 flex justify-between items-center">
-              <h2 className="text-2xl">All Users</h2>
-              <div className="flex gap-3">
-                <select className="py-2 px-3 rounded-full border-gray-300 bg-gray-50 border-2 ">
-                  <option>User</option>
-                  <option>Role</option>
-                  <option>Scope</option>
-                  <option>Status</option>
-                  <option>Authentication</option>
-                  <option>Last Access</option>
-                </select>
-                <SearchBar />
-              </div>
-            </div>
+    <Section title="Users">
+      <Panel>
+        <div className="mb-6 flex justify-between items-center">
+          <h2 className="text-2xl">All Users</h2>
+          <div className="flex gap-3">
+            <select className="py-2 px-3 rounded-full border-gray-300 bg-gray-50 border-2 ">
+              <option>User</option>
+              <option>Role</option>
+              <option>Scope</option>
+              <option>Status</option>
+              <option>Authentication</option>
+              <option>Last Access</option>
+            </select>
 
-            <div className="overflow-x-auto rounded-lg border border-gray-200 ">
-              <table className="min-w-full divide-y divide-gray-200 bg-white text-sm">
-                <thead className="bg-gray-50 text-left">
-                  <tr>
-                    <th className="px-6 py-3 font-medium text-gray-900">
-                      User
-                    </th>
-                    <th className="px-6 py-3 font-medium text-gray-900">
-                      Role
-                    </th>
-                    <th className="px-6 py-3 font-medium text-gray-900">
-                      Scope
-                    </th>
-                    <th className="px-6 py-3 font-medium text-gray-900">
-                      Status
-                    </th>
-                    <th className="px-6 py-3 font-medium text-gray-900">
-                      Authentication
-                    </th>
-                    <th className="px-6 py-3 font-medium text-gray-900">
-                      Last Access
-                    </th>
-                    <th className="px-6 py-3 font-medium text-gray-900" />
-                  </tr>
-                </thead>
+            <SearchBar />
+          </div>
+        </div>
 
-                <tbody className="divide-y divide-gray-200">
-                  {presentedData.map((user) => (
-                    <tr
-                      key={user.id}
-                      className="hover:bg-gray-50 transition-colors"
-                    >
-                      <td className="whitespace-nowrap px-6 py-4">
-                        <div className="font-medium text-gray-900">
-                          {user.name}
-                        </div>
-                        <div className="text-gray-500 text-xs">
-                          {user.email}
-                        </div>
-                      </td>
+        <div className="overflow-x-auto rounded-lg border border-gray-200 ">
+          <table className="min-w-full divide-y divide-gray-200 bg-white text-sm">
+            <thead className="bg-gray-50 text-left">
+              <tr>
+                <th className="px-6 py-3 font-medium text-gray-900">User</th>
+                <th className="px-6 py-3 font-medium text-gray-900">Role</th>
+                <th className="px-6 py-3 font-medium text-gray-900">Scope</th>
+                <th className="px-6 py-3 font-medium text-gray-900">Status</th>
+                <th className="px-6 py-3 font-medium text-gray-900">
+                  Authentication
+                </th>
+                <th className="px-6 py-3 font-medium text-gray-900">
+                  Last Access
+                </th>
+                <th className="px-6 py-3 font-medium text-gray-900" />
+              </tr>
+            </thead>
 
-                      <td className="whitespace-nowrap px-6 py-4 text-gray-700">
-                        {user.role}
-                      </td>
+            <tbody className="divide-y divide-gray-200">
+              {presentedData.map((user) => (
+                <tr
+                  key={user.id}
+                  className="hover:bg-gray-50 transition-colors"
+                >
+                  <td className="whitespace-nowrap px-6 py-4">
+                    <div className="font-medium text-gray-900">{user.name}</div>
+                    <div className="text-gray-500 text-xs">{user.email}</div>
+                  </td>
 
-                      <td className="whitespace-nowrap px-6 py-4 text-gray-700">
-                        {user.scope}
-                      </td>
+                  <td className="whitespace-nowrap px-6 py-4 text-gray-700">
+                    {user.role}
+                  </td>
 
-                      <td className="whitespace-nowrap px-6 py-4">
-                        <span
-                          className={`inline-flex items-center rounded-full px-2 py-1 text-xs font-medium
+                  <td className="whitespace-nowrap px-6 py-4 text-gray-700">
+                    {user.scope}
+                  </td>
+
+                  <td className="whitespace-nowrap px-6 py-4">
+                    <span
+                      className={`inline-flex items-center rounded-full px-2 py-1 text-xs font-medium
                        ${user.status === "Active" ? "bg-green-200 text-green-800" : ""}
                        ${user.status === "Inactive" ? "bg-red-200 text-red-800" : ""}
                      `}
-                        >
-                          {user.status}
-                        </span>
-                      </td>
+                    >
+                      {user.status}
+                    </span>
+                  </td>
 
-                      <td className="whitespace-nowrap px-6 py-4 text-gray-500">
-                        {user.authentication}
-                      </td>
+                  <td className="whitespace-nowrap px-6 py-4 text-gray-500">
+                    {user.authentication}
+                  </td>
 
-                      <td className="whitespace-nowrap px-6 py-4 text-gray-500">
-                        {user.lastAccess}
-                      </td>
+                  <td className="whitespace-nowrap px-6 py-4 text-gray-500">
+                    {user.lastAccess}
+                  </td>
 
-                      <td className="whitespace-nowrap px-2 py-4 text-gray-500">
-                        <button className="flex justify-center items-center w-8 h-8 outline-none rounded-full active:bg-gray-200 transition-colors">
-                          <LuEllipsisVertical size={20} />
-                        </button>
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
+                  <td className="whitespace-nowrap px-2 py-4 text-gray-500">
+                    <button className="flex justify-center items-center w-8 h-8 outline-none rounded-full active:bg-gray-200 transition-colors">
+                      <LuEllipsisVertical size={20} />
+                    </button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
 
-            <div className="flex items-center justify-between px-6 py-3 bg-white">
-              <p className="text-sm text-gray-500">
-                Showing {start + 1} - {""}
-                {Math.min(start + itemsPerPage, tableData.length)} of{" "}
-                {tableData.length} users
-              </p>
-              <div className="flex items-center gap-2">
-                <button
-                  onClick={() => setCurrentPage((p) => p - 1)}
-                  disabled={currentPage === 1}
-                  className="flex items-center gap-1 px-3 h-8 rounded-md text-sm text-gray-600 hover:bg-gray-100 disabled:opacity-40 disabled:hover:bg-transparent"
-                >
-                  <LuChevronLeft size={16} />
-                  Previous
-                </button>
-                <button
-                  onClick={() => setCurrentPage((p) => p + 1)}
-                  disabled={currentPage === totalPages}
-                  className="flex items-center gap-1 px-3 h-8 rounded-md text-sm text-gray-600 hover:bg-gray-100 disabled:opacity-40 disabled:hover:bg-transparent"
-                >
-                  Next
-                  <LuChevronRight size={16} />
-                </button>
-              </div>
-            </div>
-          </>
-        }
-      />
-    </div>
+        <div className="flex items-center justify-between px-6 py-3 bg-white">
+          <p className="text-sm text-gray-500">
+            Showing {start + 1} - {""}
+            {Math.min(start + itemsPerPage, tableData.length)} of{" "}
+            {tableData.length} users
+          </p>
+          <div className="flex items-center gap-2">
+            <button
+              onClick={() => setCurrentPage((p) => p - 1)}
+              disabled={currentPage === 1}
+              className="flex items-center gap-1 px-3 h-8 rounded-md text-sm text-gray-600 hover:bg-gray-100 disabled:opacity-40 disabled:hover:bg-transparent"
+            >
+              <LuChevronLeft size={16} />
+              Previous
+            </button>
+            <button
+              onClick={() => setCurrentPage((p) => p + 1)}
+              disabled={currentPage === totalPages}
+              className="flex items-center gap-1 px-3 h-8 rounded-md text-sm text-gray-600 hover:bg-gray-100 disabled:opacity-40 disabled:hover:bg-transparent"
+            >
+              Next
+              <LuChevronRight size={16} />
+            </button>
+          </div>
+        </div>
+      </Panel>
+    </Section>
   );
 }
