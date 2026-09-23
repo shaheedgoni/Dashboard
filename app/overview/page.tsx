@@ -1,6 +1,6 @@
 "use client";
 
-import CardOverview from "@/components/page-components/cardOverview";
+import CardOverview from "@/app/overview/cardOverview";
 import {
   barChartDetails,
   overviewCardDetails,
@@ -81,34 +81,43 @@ export default function Overview() {
           </Panel>
 
           <Panel flex="flex-1">
-            {" "}
             <div className="flex justify-between gap-10 mt-5 items-center">
-              <div className="flex flex-col gap-3">
-                {pieChartDetails.map((entry, index) => (
-                  <div
-                    key={index}
-                    className="flex gap-5 justify-between text-gray-600"
-                  >
-                    <div className="flex items-center gap-2">
-                      <div
-                        className="w-3 h-3 rounded-full"
-                        style={{ backgroundColor: entry.color }}
-                      />
-                      {entry.label}
-                    </div>
+              <div className="flex flex-col gap-2">
+                {pieChartDetails.map((entry, index) => {
+                  const total = pieChartDetails.reduce(
+                    (sum, i) => sum + i.value,
+                    0,
+                  );
+                  const percentage = (entry.value / total) * 100;
+                  return (
+                    <div key={index}>
+                      <div className="flex gap-3 justify-between text-gray-600">
+                        <div className="flex items-center gap-2">
+                          <div
+                            className="w-3 h-3 rounded-full"
+                            style={{ backgroundColor: entry.color }}
+                          />
+                          {entry.label}
+                        </div>
 
-                    <div className="flex justify-end">{entry.value}</div>
-                  </div>
-                ))}
+                        <div className="flex justify-end ">{entry.value}</div>
+                      </div>
+                      <div className="flex justify-start text-sm ml-5 text-gray-400">
+                        {percentage.toFixed(1)}%
+                      </div>
+                    </div>
+                  );
+                })}
               </div>
 
               <div className="flex justify-center">
                 <PieChart width={300} height={300}>
                   <Pie
                     data={pieChartDetails}
-                    innerRadius={70}
+                    innerRadius={90}
                     outerRadius={150}
                     paddingAngle={2}
+                    cornerRadius={10}
                     dataKey="value"
                   >
                     {pieChartDetails.map((entry, index) => (

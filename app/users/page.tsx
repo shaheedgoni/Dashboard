@@ -2,317 +2,443 @@
 
 import Panel from "@/components/page-components/panel";
 import SearchBar from "@/components/page-components/searchBar";
+import Table, { TableRowProps } from "@/components/page-components/table";
 import Section from "@/components/section";
-import { useState } from "react";
-import {
-  LuChevronLeft,
-  LuChevronRight,
-  LuEllipsisVertical,
-} from "react-icons/lu";
 
-interface tableDataProps {
-  id: number;
-  name: string;
-  email: string;
-  role: string;
-  scope: "All sites" | "Production" | "Development" | "Research";
-  authentication: "MFA enabled" | "Passkey + MFA" | "Password + MFA";
-  status: "Active" | "Inactive";
-  lastAccess: string;
-}
+const usersTableHead: string[] = [
+  "User",
+  "Role",
+  "Scope",
+  "Status",
+  "Authentication",
+  "Last Access",
+  "",
+];
 
-const tableData: tableDataProps[] = [
+const rowContent: TableRowProps[] = [
   {
-    id: 1,
-    name: "Alice Johnson",
-    email: "alice@example.com",
-    scope: "Production",
-    role: "Admin",
-    status: "Active",
-    authentication: "MFA enabled",
-    lastAccess: "2 mins ago",
+    columns: [
+      {
+        type: "profilePicture",
+        value: "Alice Johnson",
+        subValue: "alice@example.com",
+      },
+      "Admin",
+      "Production",
+      { type: "pills", value: "Active", pillColor: "green" },
+      "MFA enabled",
+      "2 mins ago",
+      { type: "action" },
+    ],
   },
   {
-    id: 2,
-    name: "Bob Smith",
-    email: "bob@example.com",
-    scope: "Research",
-    role: "User",
-    status: "Inactive",
-    authentication: "Passkey + MFA",
-    lastAccess: "5 days ago",
+    columns: [
+      {
+        type: "profilePicture",
+        value: "Bob Smith",
+        subValue: "bob@example.com",
+      },
+      "User",
+      "Research",
+      { type: "pills", value: "Inactive", pillColor: "red" },
+      "Passkey + MFA",
+      "5 days ago",
+      { type: "action" },
+    ],
   },
   {
-    id: 3,
-    name: "Charlie Brown",
-    email: "charlie@example.com",
-    scope: "All sites",
-    role: "Editor",
-    status: "Inactive",
-    authentication: "MFA enabled",
-    lastAccess: "Never",
+    columns: [
+      {
+        type: "profilePicture",
+        value: "Charlie Brown",
+        subValue: "charlie@example.com",
+      },
+      "Editor",
+      "All sites",
+      { type: "pills", value: "Inactive", pillColor: "red" },
+      "MFA enabled",
+      "Never",
+      { type: "action" },
+    ],
   },
   {
-    id: 4,
-    name: "Diana Prince",
-    email: "diana@example.com",
-    scope: "Development",
-    role: "Admin",
-    status: "Active",
-    authentication: "Password + MFA",
-    lastAccess: "10 mins ago",
+    columns: [
+      {
+        type: "profilePicture",
+        value: "Diana Prince",
+        subValue: "diana@example.com",
+      },
+      "Admin",
+      "Development",
+      { type: "pills", value: "Active", pillColor: "green" },
+      "Password + MFA",
+      "10 mins ago",
+      { type: "action" },
+    ],
   },
   {
-    id: 5,
-    name: "Ethan Hunt",
-    email: "ethan@example.com",
-    scope: "Production",
-    role: "User",
-    status: "Active",
-    authentication: "MFA enabled",
-    lastAccess: "1 hour ago",
+    columns: [
+      {
+        type: "profilePicture",
+        value: "Ethan Hunt",
+        subValue: "ethan@example.com",
+      },
+      "User",
+      "Production",
+      { type: "pills", value: "Active", pillColor: "green" },
+      "MFA enabled",
+      "1 hour ago",
+      { type: "action" },
+    ],
   },
   {
-    id: 6,
-    name: "Fiona Gallagher",
-    email: "fiona@example.com",
-    scope: "All sites",
-    role: "Editor",
-    status: "Active",
-    authentication: "Passkey + MFA",
-    lastAccess: "3 hours ago",
+    columns: [
+      {
+        type: "profilePicture",
+        value: "Fiona Gallagher",
+        subValue: "fiona@example.com",
+      },
+      "Editor",
+      "All sites",
+      { type: "pills", value: "Active", pillColor: "green" },
+      "Passkey + MFA",
+      "3 hours ago",
+      { type: "action" },
+    ],
   },
   {
-    id: 7,
-    name: "George Costanza",
-    email: "george@example.com",
-    scope: "Research",
-    role: "User",
-    status: "Inactive",
-    authentication: "Password + MFA",
-    lastAccess: "2 weeks ago",
+    columns: [
+      {
+        type: "profilePicture",
+        value: "George Costanza",
+        subValue: "george@example.com",
+      },
+      "User",
+      "Research",
+      { type: "pills", value: "Inactive", pillColor: "red" },
+      "Password + MFA",
+      "2 weeks ago",
+      { type: "action" },
+    ],
   },
   {
-    id: 8,
-    name: "Hannah Baker",
-    email: "hannah@example.com",
-    scope: "Development",
-    role: "Editor",
-    status: "Active",
-    authentication: "MFA enabled",
-    lastAccess: "30 mins ago",
+    columns: [
+      {
+        type: "profilePicture",
+        value: "Hannah Baker",
+        subValue: "hannah@example.com",
+      },
+      "Editor",
+      "Development",
+      { type: "pills", value: "Active", pillColor: "green" },
+      "MFA enabled",
+      "30 mins ago",
+      { type: "action" },
+    ],
   },
   {
-    id: 9,
-    name: "Ian Malcolm",
-    email: "ian@example.com",
-    scope: "Production",
-    role: "Admin",
-    status: "Active",
-    authentication: "Passkey + MFA",
-    lastAccess: "12 mins ago",
+    columns: [
+      {
+        type: "profilePicture",
+        value: "Ian Malcolm",
+        subValue: "ian@example.com",
+      },
+      "Admin",
+      "Production",
+      { type: "pills", value: "Active", pillColor: "green" },
+      "Passkey + MFA",
+      "12 mins ago",
+      { type: "action" },
+    ],
   },
   {
-    id: 10,
-    name: "Julia Roberts",
-    email: "julia@example.com",
-    scope: "All sites",
-    role: "User",
-    status: "Inactive",
-    authentication: "MFA enabled",
-    lastAccess: "1 month ago",
+    columns: [
+      {
+        type: "profilePicture",
+        value: "Julia Roberts",
+        subValue: "julia@example.com",
+      },
+      "User",
+      "All sites",
+      { type: "pills", value: "Inactive", pillColor: "red" },
+      "MFA enabled",
+      "1 month ago",
+      { type: "action" },
+    ],
   },
   {
-    id: 11,
-    name: "Kevin Hart",
-    email: "kevin@example.com",
-    scope: "Development",
-    role: "User",
-    status: "Active",
-    authentication: "Password + MFA",
-    lastAccess: "45 mins ago",
+    columns: [
+      {
+        type: "profilePicture",
+        value: "Kevin Hart",
+        subValue: "kevin@example.com",
+      },
+      "User",
+      "Development",
+      { type: "pills", value: "Active", pillColor: "green" },
+      "Password + MFA",
+      "45 mins ago",
+      { type: "action" },
+    ],
   },
   {
-    id: 12,
-    name: "Laura Palmer",
-    email: "laura@example.com",
-    scope: "Research",
-    role: "Editor",
-    status: "Active",
-    authentication: "MFA enabled",
-    lastAccess: "4 hours ago",
+    columns: [
+      {
+        type: "profilePicture",
+        value: "Laura Palmer",
+        subValue: "laura@example.com",
+      },
+      "Editor",
+      "Research",
+      { type: "pills", value: "Active", pillColor: "green" },
+      "MFA enabled",
+      "4 hours ago",
+      { type: "action" },
+    ],
   },
   {
-    id: 13,
-    name: "Michael Scott",
-    email: "michael@example.com",
-    scope: "All sites",
-    role: "Admin",
-    status: "Active",
-    authentication: "Passkey + MFA",
-    lastAccess: "8 mins ago",
+    columns: [
+      {
+        type: "profilePicture",
+        value: "Michael Scott",
+        subValue: "michael@example.com",
+      },
+      "Admin",
+      "All sites",
+      { type: "pills", value: "Active", pillColor: "green" },
+      "Passkey + MFA",
+      "8 mins ago",
+      { type: "action" },
+    ],
   },
   {
-    id: 14,
-    name: "Nina Simone",
-    email: "nina@example.com",
-    scope: "Production",
-    role: "User",
-    status: "Inactive",
-    authentication: "MFA enabled",
-    lastAccess: "3 days ago",
+    columns: [
+      {
+        type: "profilePicture",
+        value: "Nina Simone",
+        subValue: "nina@example.com",
+      },
+      "User",
+      "Production",
+      { type: "pills", value: "Inactive", pillColor: "red" },
+      "MFA enabled",
+      "3 days ago",
+      { type: "action" },
+    ],
   },
   {
-    id: 15,
-    name: "Oscar Martinez",
-    email: "oscar@example.com",
-    scope: "Development",
-    role: "Editor",
-    status: "Active",
-    authentication: "Password + MFA",
-    lastAccess: "20 mins ago",
+    columns: [
+      {
+        type: "profilePicture",
+        value: "Oscar Martinez",
+        subValue: "oscar@example.com",
+      },
+      "Editor",
+      "Development",
+      { type: "pills", value: "Active", pillColor: "green" },
+      "Password + MFA",
+      "20 mins ago",
+      { type: "action" },
+    ],
   },
   {
-    id: 16,
-    name: "Paula Abdul",
-    email: "paula@example.com",
-    scope: "Research",
-    role: "User",
-    status: "Inactive",
-    authentication: "Passkey + MFA",
-    lastAccess: "6 days ago",
+    columns: [
+      {
+        type: "profilePicture",
+        value: "Paula Abdul",
+        subValue: "paula@example.com",
+      },
+      "User",
+      "Research",
+      { type: "pills", value: "Inactive", pillColor: "red" },
+      "Passkey + MFA",
+      "6 days ago",
+      { type: "action" },
+    ],
   },
   {
-    id: 17,
-    name: "Quentin Tarantino",
-    email: "quentin@example.com",
-    scope: "All sites",
-    role: "Admin",
-    status: "Active",
-    authentication: "MFA enabled",
-    lastAccess: "1 min ago",
+    columns: [
+      {
+        type: "profilePicture",
+        value: "Quentin Tarantino",
+        subValue: "quentin@example.com",
+      },
+      "Admin",
+      "All sites",
+      { type: "pills", value: "Active", pillColor: "green" },
+      "MFA enabled",
+      "1 min ago",
+      { type: "action" },
+    ],
   },
   {
-    id: 18,
-    name: "Rachel Green",
-    email: "rachel@example.com",
-    scope: "Production",
-    role: "Editor",
-    status: "Active",
-    authentication: "Passkey + MFA",
-    lastAccess: "2 hours ago",
+    columns: [
+      {
+        type: "profilePicture",
+        value: "Rachel Green",
+        subValue: "rachel@example.com",
+      },
+      "Editor",
+      "Production",
+      { type: "pills", value: "Active", pillColor: "green" },
+      "Passkey + MFA",
+      "2 hours ago",
+      { type: "action" },
+    ],
   },
   {
-    id: 19,
-    name: "Steve Rogers",
-    email: "steve@example.com",
-    scope: "Development",
-    role: "User",
-    status: "Active",
-    authentication: "MFA enabled",
-    lastAccess: "15 mins ago",
+    columns: [
+      {
+        type: "profilePicture",
+        value: "Steve Rogers",
+        subValue: "steve@example.com",
+      },
+      "User",
+      "Development",
+      { type: "pills", value: "Active", pillColor: "green" },
+      "MFA enabled",
+      "15 mins ago",
+      { type: "action" },
+    ],
   },
   {
-    id: 20,
-    name: "Tina Fey",
-    email: "tina@example.com",
-    scope: "Research",
-    role: "Admin",
-    status: "Inactive",
-    authentication: "Password + MFA",
-    lastAccess: "9 days ago",
+    columns: [
+      {
+        type: "profilePicture",
+        value: "Tina Fey",
+        subValue: "tina@example.com",
+      },
+      "Admin",
+      "Research",
+      { type: "pills", value: "Inactive", pillColor: "red" },
+      "Password + MFA",
+      "9 days ago",
+      { type: "action" },
+    ],
   },
   {
-    id: 21,
-    name: "Uma Thurman",
-    email: "uma@example.com",
-    scope: "All sites",
-    role: "User",
-    status: "Active",
-    authentication: "MFA enabled",
-    lastAccess: "50 mins ago",
+    columns: [
+      {
+        type: "profilePicture",
+        value: "Uma Thurman",
+        subValue: "uma@example.com",
+      },
+      "User",
+      "All sites",
+      { type: "pills", value: "Active", pillColor: "green" },
+      "MFA enabled",
+      "50 mins ago",
+      { type: "action" },
+    ],
   },
   {
-    id: 22,
-    name: "Victor Frankenstein",
-    email: "victor@example.com",
-    scope: "Production",
-    role: "Editor",
-    status: "Inactive",
-    authentication: "Passkey + MFA",
-    lastAccess: "3 weeks ago",
+    columns: [
+      {
+        type: "profilePicture",
+        value: "Victor Frankenstein",
+        subValue: "victor@example.com",
+      },
+      "Editor",
+      "Production",
+      { type: "pills", value: "Inactive", pillColor: "red" },
+      "Passkey + MFA",
+      "3 weeks ago",
+      { type: "action" },
+    ],
   },
   {
-    id: 23,
-    name: "Wendy Torrance",
-    email: "wendy@example.com",
-    scope: "Development",
-    role: "Admin",
-    status: "Active",
-    authentication: "MFA enabled",
-    lastAccess: "5 mins ago",
+    columns: [
+      {
+        type: "profilePicture",
+        value: "Wendy Torrance",
+        subValue: "wendy@example.com",
+      },
+      "Admin",
+      "Development",
+      { type: "pills", value: "Active", pillColor: "green" },
+      "MFA enabled",
+      "5 mins ago",
+      { type: "action" },
+    ],
   },
   {
-    id: 24,
-    name: "Xavier Woods",
-    email: "xavier@example.com",
-    scope: "Research",
-    role: "User",
-    status: "Active",
-    authentication: "Password + MFA",
-    lastAccess: "1 hour ago",
+    columns: [
+      {
+        type: "profilePicture",
+        value: "Xavier Woods",
+        subValue: "xavier@example.com",
+      },
+      "User",
+      "Research",
+      { type: "pills", value: "Active", pillColor: "green" },
+      "Password + MFA",
+      "1 hour ago",
+      { type: "action" },
+    ],
   },
   {
-    id: 25,
-    name: "Yara Shahidi",
-    email: "yara@example.com",
-    scope: "All sites",
-    role: "Editor",
-    status: "Inactive",
-    authentication: "MFA enabled",
-    lastAccess: "2 months ago",
+    columns: [
+      {
+        type: "profilePicture",
+        value: "Yara Shahidi",
+        subValue: "yara@example.com",
+      },
+      "Editor",
+      "All sites",
+      { type: "pills", value: "Inactive", pillColor: "red" },
+      "MFA enabled",
+      "2 months ago",
+      { type: "action" },
+    ],
   },
   {
-    id: 26,
-    name: "Zack Morris",
-    email: "zack@example.com",
-    scope: "Production",
-    role: "User",
-    status: "Active",
-    authentication: "Passkey + MFA",
-    lastAccess: "25 mins ago",
+    columns: [
+      {
+        type: "profilePicture",
+        value: "Zack Morris",
+        subValue: "zack@example.com",
+      },
+      "User",
+      "Production",
+      { type: "pills", value: "Active", pillColor: "green" },
+      "Passkey + MFA",
+      "25 mins ago",
+      { type: "action" },
+    ],
   },
   {
-    id: 27,
-    name: "Amy Santiago",
-    email: "amy@example.com",
-    scope: "Development",
-    role: "Admin",
-    status: "Active",
-    authentication: "MFA enabled",
-    lastAccess: "7 mins ago",
+    columns: [
+      {
+        type: "profilePicture",
+        value: "Amy Santiago",
+        subValue: "amy@example.com",
+      },
+      "Admin",
+      "Development",
+      { type: "pills", value: "Active", pillColor: "green" },
+      "MFA enabled",
+      "7 mins ago",
+      { type: "action" },
+    ],
   },
   {
-    id: 28,
-    name: "Ben Wyatt",
-    email: "ben@example.com",
-    scope: "Research",
-    role: "Editor",
-    status: "Inactive",
-    authentication: "Password + MFA",
-    lastAccess: "4 days ago",
+    columns: [
+      {
+        type: "profilePicture",
+        value: "Ben Wyatt",
+        subValue: "ben@example.com",
+      },
+      "Editor",
+      "Research",
+      { type: "pills", value: "Inactive", pillColor: "red" },
+      "Password + MFA",
+      "4 days ago",
+      { type: "action" },
+    ],
   },
 ];
 
 export default function Users() {
-  const itemsPerPage = 6;
-  const [currentPage, setCurrentPage] = useState(1);
-
-  const totalPages = Math.ceil(tableData.length / itemsPerPage);
-  const start = (currentPage - 1) * itemsPerPage;
-  const presentedData = tableData.slice(start, start + itemsPerPage);
-  console.log("running");
-
   return (
     <Section title="Users">
       <Panel>
@@ -332,21 +458,20 @@ export default function Users() {
           </div>
         </div>
 
-        <div className="overflow-x-auto rounded-lg border border-gray-200 ">
+        <Table headerContent={usersTableHead} rowContent={rowContent} />
+
+        {/* <div className="overflow-x-auto rounded-lg border border-gray-200 ">
           <table className="min-w-full divide-y divide-gray-200 bg-white text-sm">
             <thead className="bg-gray-50 text-left">
               <tr>
-                <th className="px-6 py-3 font-medium text-gray-900">User</th>
-                <th className="px-6 py-3 font-medium text-gray-900">Role</th>
-                <th className="px-6 py-3 font-medium text-gray-900">Scope</th>
-                <th className="px-6 py-3 font-medium text-gray-900">Status</th>
-                <th className="px-6 py-3 font-medium text-gray-900">
-                  Authentication
-                </th>
-                <th className="px-6 py-3 font-medium text-gray-900">
-                  Last Access
-                </th>
-                <th className="px-6 py-3 font-medium text-gray-900" />
+                {usersTableHead.map((header, index) => (
+                  <th
+                    key={index}
+                    className="px-6 py-3 font-medium text-gray-900"
+                  >
+                    {header}
+                  </th>
+                ))}
               </tr>
             </thead>
 
@@ -423,7 +548,7 @@ export default function Users() {
               <LuChevronRight size={16} />
             </button>
           </div>
-        </div>
+        </div> */}
       </Panel>
     </Section>
   );

@@ -1,8 +1,8 @@
 import { overviewCardDetailsProps } from "@/types/CardDetailsTypes";
 import { FaArrowUp } from "react-icons/fa6";
 import { FaArrowDown } from "react-icons/fa6";
-import SparkLine from "./sparkLine";
-import Card from "./card";
+import SparkLine from "../../components/page-components/sparkLine";
+import Card from "../../components/page-components/card";
 
 export default function CardOverview({
   title,
