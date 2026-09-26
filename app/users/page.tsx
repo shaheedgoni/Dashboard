@@ -1,8 +1,7 @@
 "use client";
 
-import Panel from "@/components/page-components/panel";
-import SearchBar from "@/components/page-components/searchBar";
 import Table, { TableRowProps } from "@/components/page-components/table";
+import { Panel, SearchBar } from "@/components/page-components/ui/ui";
 import Section from "@/components/section";
 
 const usersTableHead: string[] = [

@@ -1,4 +1,4 @@
-import Card from "@/components/page-components/card";
+import { Card } from "@/components/page-components/ui/ui";
 import { reportCardProps } from "@/types/CardDetailsTypes";
 
 export default function ReportCard({ icon, label, value }: reportCardProps) {

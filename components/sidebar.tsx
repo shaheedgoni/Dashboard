@@ -6,6 +6,7 @@ import logo from "../public/logo-dark.png";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { LuChevronDown } from "react-icons/lu";
+import { ProfileIcon } from "./page-components/ui/ui";
 
 export default function Sidebar() {
   const pathname = usePathname();
@@ -38,9 +39,7 @@ export default function Sidebar() {
 
       <div className="mt-auto rounded-lg bg-white border border-gray-200 shadow-sm flex items-center justify-between px-3 py-2.5 cursor-pointer">
         <div className="flex items-center gap-3">
-          <div className="bg-green-500 text-white w-9 h-9 justify-center items-center flex rounded-full font-medium text-sm shrink-0">
-            U
-          </div>
+          <ProfileIcon size={36} />
           <div>
             <p className="text-sm font-medium text-black leading-tight">User</p>
             <p className="text-xs text-gray-500 leading-tight">Administrator</p>

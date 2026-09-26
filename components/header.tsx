@@ -1,9 +1,8 @@
 "use client";
 import { FaRegBell } from "react-icons/fa";
 import { notificationProps } from "@/types/notificationProps";
-import SearchBar from "./page-components/searchBar";
-import PrimaryButton from "./page-components/primaryButton";
 import { LuSun } from "react-icons/lu";
+import { PrimaryButton, SearchBar } from "./page-components/ui/ui";
 
 export default function Header({
   displayNotification,

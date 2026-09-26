@@ -6,9 +6,9 @@ import {
   overviewCardDetails,
   pieChartDetails,
 } from "./overviewContent";
-import Panel from "@/components/page-components/panel";
 import Section from "@/components/section";
 import { Cell, Pie, PieChart } from "recharts";
+import { Panel } from "@/components/page-components/ui/ui";
 
 export default function Overview() {
   const maxValue = Math.max(...barChartDetails.map((item) => item.value), 1);

@@ -3,7 +3,7 @@
 import { notificationProps } from "@/types/notificationProps";
 import { useEffect } from "react";
 import { LuX } from "react-icons/lu";
-import PrimaryButton from "./page-components/primaryButton";
+import { PrimaryButton } from "./page-components/ui/ui";
 
 export default function Notifications({
   setDisplayNotification,

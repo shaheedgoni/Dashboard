@@ -1,9 +1,8 @@
 import { reportCardDetails } from "./reportContent";
 import Section from "@/components/section";
 import ReportCard from "./reportCard";
-import Panel from "@/components/page-components/panel";
 import Table, { TableRowProps } from "@/components/page-components/table";
-import SearchBar from "@/components/page-components/searchBar";
+import { Panel, SearchBar } from "@/components/page-components/ui/ui";
 
 const reportsTableHead: string[] = [
   "Report name",
